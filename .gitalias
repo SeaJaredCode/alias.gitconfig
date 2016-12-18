@@ -1,0 +1,65 @@
+# GitConfig Aliases for common commands
+# Install into your gitconfig using:
+#
+#  [include]
+#      path=~/.gitalias
+
+[alias]
+    # Basics
+    f = fetch
+    m = merge
+    s = status
+    st = status
+    a = add -A
+
+    # Branches
+    b = branch
+    bc = branch --contains
+    bcr = branch -r --contains
+    cb = "!f() {\
+            git checkout -b $1 origin/master;\
+        };f"
+    cbr = "!f() {\
+            gerrit_create_branch origin $1 master;\
+        };f"
+    cbs = "!f() {\
+            git cbr $1;\
+            git cb $1;\
+        };f"
+
+    # Commits
+    ci = commit
+    cin = commit --no-edit
+    ca = commit --amend
+    can = commit --amend --no-edit
+
+    # Checkout
+    co = checkout
+    cm = checkout -m
+    cp = cherry-pick
+    cu = !do_git_checkout_update
+
+    # Log
+    l = !do_git_log
+    ls = log --oneline
+    lf = log --name-status
+
+    # Diff
+    gdiff = difftool -g -d
+    gwdiff = difftool --tool=winmerge -d
+    wdiff = difftool --tool=winmerge
+
+    rpm = rebase --preserve-merges
+    rev = "!f() {\
+            gerrit_push_review $1; \
+        };f"
+    alias = "!f() {\
+            if [ -z $1 ] || [ -z $2 ]; \
+            then \
+                git config --get-regexp alias; \
+                echo '\nTo make alias: git alias <alias> <command>'; \
+            else \
+                git config --global alias.$1 $2; \
+            fi; \
+        };f"
+    yolo = push -f
