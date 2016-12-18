@@ -3,12 +3,21 @@ BRANCH_PARAM=$1
 CURRENT_BRANCH="$(git symbolic-ref --short HEAD 2>/dev/null)"
 UPDATE_BRANCH=${BRANCH_PARAM:-${CURRENT_BRANCH}}
 
-git fetch
+LOCAL_REF=`git show-ref refs/remotes/origin/$UPDATE_BRANCH | cut -d " " -f 1 - `
+REMOTE_REF=`git ls-remote origin $UPDATE_BRANCH | cut -f 1 -`
 
-if [ $CURRENT_BRANCH -eq $BRANCH_NAME ]
+if [ $LOCAL_REF != $REMOTE_REF  ]
 then
-    git reset --hard
+    echo "Fetching latest from origin"
+    git fetch
+fi
+
+if [ $CURRENT_BRANCH == $UPDATE_BRANCH ]
+then
+    echo "Restting $UPDATE_BRANCH to origin/$UPDATE_BRANCH"
+    git reset --hard origin/$UPDATE_BRANCH
 else
-    git checkout -B $1 origin/$1
+    echo "Checking out $UPDATE_BRANCH"
+    git checkout -B $UPDATE_BRANCH origin/$UPDATE_BRANCH
 fi
 
