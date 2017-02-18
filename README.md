@@ -5,7 +5,7 @@ Contains general git aliases with gerrit extensions for ease of review.
 ## Installation
 You can install from your bash environment using:
 
-    source <(curl -s https://raw.githubusercontent.com/SeaJaredCode/GitConfig/master/bootstrap.sh)
+    source <(curl -s https://raw.githubusercontent.com/SeaJaredCode/alias.gitconfig/master/bootstrap.sh)
 
 > **NOTE:** This will default to installing to ~/.gitalias. Ideally that file does not currently exist, but if
 > you want it to be elsewhere you will have to clone the repository and run the install script with the path to

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TEMP_DIR=`mktemp -d`
-LOG=/tmp/install_gitconfig.log
+LOG=/tmp/install_alias.gitconfig.log
 
 set -e
 
@@ -14,7 +14,7 @@ trap finish EXIT
 
 echo "Logging to: $LOG"
 echo "Downloading latest..."
-git clone --progress --depth 1 https://github.com/SeaJaredCode/GitConfig.git $TEMP_DIR 2>> $LOG
+git clone --progress --depth 1 https://github.com/SeaJaredCode/alias.gitconfig.git $TEMP_DIR 2>> $LOG
 
 echo "Installing..."
 pushd $TEMP_DIR >> $LOG
