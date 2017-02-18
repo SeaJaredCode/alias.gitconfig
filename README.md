@@ -1,4 +1,4 @@
-# GitConfig
+# alias.gitconfig
 
 Contains general git aliases with gerrit extensions for ease of review.
 
@@ -50,3 +50,24 @@ A short list of aliases contained:
 | rev    | [`branch`] | Submits change for review on Gerrit. Will create branch remotely if necessary.<br>Only necessary to specify branch if headless (or you're submitting to a different branch than you're on). |
 | where  | `ref` | Finds all commits in remote with the `ref` specified. |
 
+## Other things you may find helpful
+Clone gerrit repositories:
+
+    gerrit clone <projectname>
+
+Push a commit for review:
+
+    gerrit push review <branch>
+
+Other gerrit commands included:
+
+    gerrit create branch <branchname> <parent>
+    gerrit create project <projectname>
+
+### Note on the review process
+There is little benefit to creating branches early on the server (and it can cause issues). Also, it is often forgotten whether you need to create that branch before pushing. You go through your ordinary local branching process and then when you are prepared, you can use `gerrit push review` or its alias `git rev`.
+
+Any additional patchsets you make can likewise just be pushed using `git rev`. If you are making a patchset in headless mode, you will need to specify the branch to push to.
+
+## Implementation notes
+I believe there are multiple places that have the server name & port hardcoded. This is totally unnecessary, but there it is...
