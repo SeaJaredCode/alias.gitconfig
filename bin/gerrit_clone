@@ -16,4 +16,4 @@ fi
 git clone ssh://`whoami`@gerrit:29418/$1 $REPO_NAME
 
 echo "Installing gerrit change-id hooks..."
-tar -xvf ~/bin/gerrit_hooks.tar -C $REPO_NAME/.git/hooks
+tar -xvf ~/bin/gerrit_hooks.tar -C $REPO_NAME
