@@ -19,7 +19,7 @@ include section is above your [alias] section.
 
 One fairly safe way to do this is to prepend the file with the include statement:
 
-     echo -e "[include]\n    path=~/.gitalias\n$(cat ~/.gitconfig)"
+     echo -e "[include]\n    path=~/.gitalias\n\n$(cat ~/.gitconfig)" > ~/.gitconfig
 
 ## Updating with latest aliases/scripts ##
 The install and bootstrap scripts are intended to be re-runnable to update with the latest. Follow the same method

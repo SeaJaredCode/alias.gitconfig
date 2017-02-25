@@ -3,6 +3,7 @@
 ALIAS_FILE=${1:-~/.gitalias}
 
 cp .gitalias $ALIAS_FILE
+if [ -e ~/bin ]; then mkdir ~/bin; fi
 cp bin/* ~/bin
 
 if [ -z `grep ~/.gitconfig -e "path\s*=.*$(basename $ALIAS_FILE)"` ]
